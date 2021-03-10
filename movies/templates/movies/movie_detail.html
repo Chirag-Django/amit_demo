@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}MOVIES DETAIL{% endblock %}
+
+{%block content%}
+
+    <div class="container">
+        {% if movie %}
+
+                <h2>NAME: {{movie.title}}</h2>
+                <h2>ACTORS: {{movie.actors}}</h2>
+                <h2>RELEASE DATE: {{movie.release_date}}</h2>
+                <h2>RATING: {{movie.rating}}</h2>
+                <h2>REVIEW: {{movie.review}}</h2>
+
+
+        {%else%}
+        <center><h2>MOVIE NOT FOUND</h2></center>
+        {%endif%}
+
+        <a href="{% url 'movie_destroy' movie.pk %}" class="btn btn-danger">DELETE</a> <br><br>
+
+        <a href="{% url 'update_movie' movie.pk %}" class="btn btn-primary">UPDATE</a>
+    </div>
+
+{% endblock %}

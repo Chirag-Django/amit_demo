@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}MOVIES LIST{% endblock %}
+
+{%block content%}
+
+    <div class="container">
+            {%if movies%}
+    <ol>
+    {% for movie in movies %}
+       <h2><li><a href="{% url 'movie_detail' movie.id %}">{{movie.title}}</a></li></h2>
+    {% endfor%}
+    </ol>
+    {%else%}
+    <center><h2>NO MOVIES!!!</h2></center>
+    {%endif%}
+    </div>
+
+{% endblock %}
