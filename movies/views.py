@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from .models import Movie
 from .forms import MovieForm
+from django.views.generic import ListView,CreateView,UpdateView,DeleteView,DetailView
 
 # Create your views here.
 
@@ -11,20 +12,29 @@ def index_func(request):
     }
     return render(request,'movies/home.html',context)
 
-def movie_list(request):
-    movies = Movie.objects.all()
-    context = {
-        'movies' : movies
-    }
-    return render(request,'movies/movies_list.html',context)
+# def movie_list(request):
+#     movies = Movie.objects.all()
+#     context = {
+#         'movies' : movies
+#     }
+#     return render(request,'movies/movies_list.html',context)
 
+class MovieList(ListView):
+    model = Movie
+    #default context      movie_list
+    #default template     movie_list.html
 
-def movie_detail(request,id):
-    movie = Movie.objects.get(id=id)
-    context = {
-        'movie' : movie
-    }
-    return render(request,'movies/movie_detail.html',context)
+# def movie_detail(request,id):
+#     movie = Movie.objects.get(id=id)
+#     context = {
+#         'movie' : movie
+#     }
+#     return render(request,'movies/movie_detail.html',context)
+
+class MovieDetail(DetailView):
+    model = Movie
+    #default_template     modelclassname_detail           movie_detail
+    #defatult context     modelclassname                  movie
 
 def add_movie(request):
     if request.method == 'POST':

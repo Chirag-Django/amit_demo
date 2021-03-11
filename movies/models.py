@@ -1,10 +1,11 @@
 from django.db import models
+from django.core import validators
 
 # Create your models here.
 class Movie(models.Model):
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250, validators=[validators.MinLengthValidator(2)])
     actors = models.CharField(max_length=30)
-    rating = models.IntegerField()
+    rating = models.IntegerField(validators=[validators.MaxValueValidator(5),validators.MinValueValidator(1)])
     release_date = models.DateField()
     review = models.TextField(null=True)
 
